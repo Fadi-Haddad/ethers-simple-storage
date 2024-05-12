@@ -1,3 +1,5 @@
+const ethers = require("ethers");
+
 async function main() {
   console.log("some message");
 }
