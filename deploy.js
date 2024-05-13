@@ -15,11 +15,13 @@ async function main() {
 
   console.log("deploying please wait");
 
-  const contract = await contractFactory.deploy();
+  const contract = await contractFactory.deploy();  //we can add overrides such as contractFactory.deploy({gasPrice:100000, gasLimit:125000})
 
-  console.log(contract);
+  const deploymentReceipt = await contract.deploymentTransaction().wait(1); //The transaction receipt contains block number, gas used, and transaction hash, waiting for 1 block verification
+  console.log(deploymentReceipt);
+  }
 
-}
+
 main()
   .then(() => process.exit(0))
   .catch((error) => {
