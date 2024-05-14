@@ -8,7 +8,7 @@ async function main() {
 
   let provider = new ethers.JsonRpcProvider("http://127.0.0.1:7545"); // this code connects our script with our blockchain
   const wallet = new ethers.Wallet(
-    "0x73eed09c2137aa5ae8e06df7366d924277212457d0487e6c17520a35453caf1d",
+    "0x473a82f1efe068c76892f2c469692056e6b592a60a00c2eceae82506c64f3371",
     provider
   ); // a private key obtained from Ganache.
 
@@ -45,10 +45,16 @@ async function main() {
 
 // to interact with the contract, we can call the function directly as methods on the contract object
 
-const favoriteNumber = await contract.retrieve(); // returns a big number 
-console.log(favoriteNumber.toString());  // we use the toString method to convert the BIG number to a string
+const favoriteNumber = await contract.retrieve();       // returns a big number.
+console.log("favorite Number is", favoriteNumber.toString());                 // we use the toString() method to convert the BIG number to a string
 
+const transactionResponse = await contract.store("7");
 
+const transactionReceipt = await transactionResponse.wait(1);
+
+const updatedFavoriteNumber = await contract.retrieve();
+
+console.log("Updated Favorite Number is ", updatedFavoriteNumber.toString());
 }
 
 
