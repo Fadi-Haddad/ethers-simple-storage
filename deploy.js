@@ -17,7 +17,11 @@ async function main() {
   const contract = await contractFactory.deploy(); //we can add overrides such as contractFactory.deploy({gasPrice:100000, gasLimit:125000})
 
   const deploymentReceipt = await contract.deploymentTransaction().wait(1); //The transaction receipt contains block number, gas used, and transaction hash, waiting for 1 block verification
+  
+  console.log(`Contract Address : ${contract.address}`)
+
   console.log(contract.deploymentTransaction); // print transaction response
+  
   console.log(deploymentReceipt); // prints transaction info after waiting for a block confirmation
 
   // we can send a transaction with the info we want
